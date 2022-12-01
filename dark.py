@@ -8,7 +8,7 @@ app = Flask(__name__)
 youtube_dl.utils.bug_reports_message = lambda: ''
 ytdl_format_options = {
     'format': 'bestaudio/best',
-    'outtmpl': 'dl_web/music/%(id)s.mp3',
+    'outtmpl': 'workspace/music/%(id)s.mp3',
     'restrictfilenames': True,
     'noplaylist': False,
     'nocheckcertificate': True,
@@ -49,9 +49,9 @@ def music():
 
 @app.route('/delete')
 def delete():
-    musicList = os.listdir('dl_web/music')
+    musicList = os.listdir('./music')
     for i in musicList:
-        os.remove(f"dl_web/music/{i}")
+        os.remove(f"./music/{i}")
     return redirect('/')
 
 
