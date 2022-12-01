@@ -1,4 +1,3 @@
 asyncio
 youtube_dl==2021.12.17
 flask
-os
