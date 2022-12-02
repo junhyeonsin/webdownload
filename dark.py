@@ -1,40 +1,44 @@
 import youtube_dl
-from flask import Flask, render_template, request, send_file, redirect
+from flask import Flask, render_template, request, send_file, redirect, make_response
 import os
 import asyncio
+import random
 
 app = Flask(__name__)
 
 youtube_dl.utils.bug_reports_message = lambda: ''
-ytdl_format_options = {
-    'format': 'bestaudio/best',
-    'outtmpl': 'music/%(id)s.mp3',
-    'restrictfilenames': True,
-    'noplaylist': False,
-    'nocheckcertificate': True,
-    'ignoreerrors': False,
-    'logtostderr': False,
-    'quiet': True,
-    'no_warnings': True,
-    'default_search': 'auto',
-    # bind to ipv4 since ipv6 addresses cause issues sometimes
-    'source_address': '0.0.0.0',
-}
-
-ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
 
 
 @app.route('/')
 def main():
+    res = make_response()
+    res.set_cookie('id', random.random())
     return render_template('main.html')
 
 
 @app.route('/download', methods=["POST"])
 def fileDownload():
     musicid = request.form['url'].split('/')[3]
+    cookie = request.cookies.get('id')
+    ytdl_format_options = {
+        'format': 'bestaudio/best',
+        'outtmpl': f'music/{cookie}.mp3',
+        'restrictfilenames': True,
+        'noplaylist': False,
+        'nocheckcertificate': True,
+        'ignoreerrors': False,
+        'logtostderr': False,
+        'quiet': True,
+        'no_warnings': True,
+        'default_search': 'auto',
+        # bind to ipv4 since ipv6 addresses cause issues sometimes
+        'source_address': '0.0.0.0',
+    }
+    ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
+
     ytdl.download([request.form['url']])
     info = ytdl.extract_info(request.form['url'])
-    return render_template('download.html', thumbnail=info['thumbnails'][-1]['url'], title=info['title'], id=musicid)
+    return render_template('download.html', thumbnail=info['thumbnails'][-1]['url'], title=info['title'], id=cookie)
 
 
 @app.route('/music')
