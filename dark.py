@@ -3,7 +3,6 @@ from flask import Flask, render_template, request, send_file, redirect, make_res
 import os
 import asyncio
 import random
-
 app = Flask(__name__)
 
 youtube_dl.utils.bug_reports_message = lambda: ''
@@ -13,18 +12,19 @@ youtube_dl.utils.bug_reports_message = lambda: ''
 def main():
     if not request.cookies.get('id'):
         res = make_response()
-        res.set_cookie('id', random.random())
+        res.set_cookie('id', str(random.randint(0, 54632585325251)))
         return res
     return render_template('main.html')
 
 
 @app.route('/download', methods=["POST"])
 def fileDownload():
-    musicid = request.form['url'].split('/')[3]
+    #musicid = request.form['url'].split('/')[3]
     cookie = request.cookies.get('id')
+    ext = request.form['exts']
     ytdl_format_options = {
         'format': 'bestaudio/best',
-        'outtmpl': f'music/{cookie}.mp3',
+        'outtmpl': f'music/{cookie}.{ext}',
         'restrictfilenames': True,
         'noplaylist': False,
         'nocheckcertificate': True,
@@ -40,17 +40,18 @@ def fileDownload():
 
     ytdl.download([request.form['url']])
     info = ytdl.extract_info(request.form['url'])
-    return render_template('download.html', thumbnail=info['thumbnails'][-1]['url'], title=info['title'], id=cookie)
+    return render_template('download.html', thumbnail=info['thumbnails'][-1]['url'], title=info['title'], id=cookie, ext=ext)
 
 
 @app.route('/music')
 def music():
     params = request.args.to_dict()
     musicid = params['music']
+    ext = params['ext']
     if len(params) == 0:
         return redirect('/')
     else:
-        return send_file(f'music/{musicid}.mp3', download_name='download.mp3', as_attachment=True)
+        return send_file(f'music/{musicid}.{ext}', download_name='download.{ext}', as_attachment=True)
 
 
 @app.route('/delete')
