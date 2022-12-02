@@ -11,8 +11,10 @@ youtube_dl.utils.bug_reports_message = lambda: ''
 
 @app.route('/')
 def main():
-    res = make_response()
-    res.set_cookie('id', random.random())
+    if not request.cookies.get('id'):
+        res = make_response()
+        res.set_cookie('id', random.random())
+        return res
     return render_template('main.html')
 
 
