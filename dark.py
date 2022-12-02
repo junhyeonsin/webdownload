@@ -21,9 +21,13 @@ def main():
 def fileDownload():
     #musicid = request.form['url'].split('/')[3]
     cookie = request.cookies.get('id')
-    ext = request.form['exts']
+    try:
+        request.form['exts']
+    except KeyError:
+        ext = 'mp3'
+    else:
+        ext = request.form['exts']
     ytdl_format_options = {
-        'format': 'bestaudio/best',
         'outtmpl': f'music/{cookie}.{ext}',
         'restrictfilenames': True,
         'noplaylist': False,
