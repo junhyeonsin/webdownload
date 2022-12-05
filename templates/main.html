@@ -13,7 +13,7 @@
     body{
       text-align: center;
     }
-    input{
+    #url{
       height: 100px;
       width: 500px;
       border-radius: 30px;
@@ -67,7 +67,7 @@
   
   <h1 style="width:100%;">유튜브 영상 다운받기</h1>
   <form  action="/download" method="post" id="form">
-    <input type="text" placeholder="유튜브 영상 URL" name="url" required style="width: 70%;" autocomplete="off">
+    <input type="text" id="url" placeholder="유튜브 영상 URL" name="url" required style="width: 70%;" autocomplete="off">
     <br>
     <div class="dropdown" style="width: 15%;">
       <button class="dropbtn">확장자</button>
