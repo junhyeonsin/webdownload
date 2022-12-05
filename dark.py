@@ -36,7 +36,7 @@ def fileDownload():
             only_audio=True).get_highest_resolution()
     else:
         stream = yt.streams.get_highest_resolution()
-    stream.download('music', filename=f'{cookie}')
+    stream.download('music', filename=cookie)
     # ytdl_format_options = {
     #     'outtmpl': f'music/{cookie}.{ext}',
     #     'restrictfilenames': True,
