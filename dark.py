@@ -73,6 +73,11 @@ def delete():
     return redirect('/')
 
 
+@app.route('/favicon.ico')
+def favicon():
+    pass
+
+
 if __name__ == '__main__':
 
     app.run(host='0.0.0.0')
