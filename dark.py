@@ -45,7 +45,7 @@ def fileDownload():
     start = datetime.datetime.now()
     ytdl.download([request.form['url']])
     end = datetime.datetime.now()
-    print(start-end)
+    print(end-start)
     print('downloaded')
     info = ytdl.extract_info(request.form['url'])
     return render_template('download.html', thumbnail=info['thumbnails'][-1]['url'], title=info['title'], id=cookie, ext=ext)
