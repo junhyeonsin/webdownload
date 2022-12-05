@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, send_file, redirect, make_res
 import os
 import asyncio
 import random
-import time
+import datetime
 app = Flask(__name__)
 
 youtube_dl.utils.bug_reports_message = lambda: ''
@@ -42,9 +42,9 @@ def fileDownload():
         'source_address': '0.0.0.0',
     }
     ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
-    start = time.now()
+    start = datetime.datetime.now()
     ytdl.download([request.form['url']])
-    end = time.now()
+    end = datetime.datetime.now()
     print(start-end)
     print('downloaded')
     info = ytdl.extract_info(request.form['url'])
