@@ -34,7 +34,7 @@ def fileDownload():
     if ext == 'mp3':
         stream = yt.streams.filter(only_audio=True).first()
     else:
-        stream = yt.streams.first()
+        stream = yt.streams.filter(res='1080p').first()
     stream.download('music', filename=f"{cookie}.{ext}")
     # ytdl_format_options = {
     #     'outtmpl': f'music/{cookie}.{ext}',
@@ -62,10 +62,11 @@ def music():
     params = request.args.to_dict()
     musicid = params['music']
     ext = params['ext']
+    title = params['title']
     if len(params) == 0:
         return redirect('/')
     else:
-        return send_file(f'music/{musicid}.{ext}', download_name=f'download.{ext}', as_attachment=True)
+        return send_file(f'music/{musicid}.{ext}', download_name=f'{title}.{ext}', as_attachment=True)
 
 
 @app.route('/delete')
