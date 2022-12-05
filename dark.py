@@ -23,18 +23,14 @@ def main():
 def fileDownload():
     #musicid = request.form['url'].split('/')[3]
     cookie = request.cookies.get('id')
-    try:
-        request.form['exts']
-    except KeyError:
-        ext = 'mp3'
-    else:
-        ext = request.form['exts']
+    ext = request.form['exts']
+    resolution = request.form['res']
     start = datetime.datetime.now()
     yt = pytube.YouTube(request.form['url'])
     if ext == 'mp3':
         stream = yt.streams.filter(only_audio=True).first()
     else:
-        stream = yt.streams.filter(res='1080p').first()
+        stream = yt.streams.filter(res=resolution).first()
     stream.download('music', filename=f"{cookie}.{ext}")
     # ytdl_format_options = {
     #     'outtmpl': f'music/{cookie}.{ext}',
