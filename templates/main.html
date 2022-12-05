@@ -65,12 +65,21 @@
     <div class="dropdown" style="width: 30%;">
       <button class="dropbtn">파일 확장자</button>
       <div class="dropdown-content">
-        <label><input type="radio" name="exts" value="mp3">mp3</label>
+        <label><input type="radio" name="exts" value="mp3" checked>mp3</label>
         <label><input type="radio" name="exts" value="mp4">mp4</label>
       </div>
     </div>
+    <div class="dropdown" style="width: 30%;">
+      <button class="dropbtn">영상 화질</button>
+      <div class="dropdown-content">
+        <label><input type="radio" name="res" value="360p">360p</label>
+        <label><input type="radio" name="res" value="480p">480p</label>
+        <label><input type="radio" name="res" value="720p" checked>720p</label>
+        <label><input type="radio" name="res" value="1080p">1080p</label>
+      </div>
+    </div>
   </form>
-  <h2 id="text">다운로드가 생각보다 오래 걸릴수 있습니다.</h2>
+  <h2 id="text">영상 길이, 영상 화질에 따라 시간이 오래 걸릴수 있습니다.</h2>
   <script>
     let form = document.getElementById('form')
     form.addEventListener('submit',(e)=>{
