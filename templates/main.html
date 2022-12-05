@@ -59,7 +59,7 @@
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
   </style>
   <h1>유튜브 영상 다운받기</h1>
-  <form action="/download" method="post">
+  <form action="/download" method="post" id="form">
     <input type="text" placeholder="유튜브 영상 URL" name="url" required>
     <div class="dropdown">
       <button class="dropbtn">파일 확장자</button>
@@ -70,5 +70,12 @@
     </div>
   </form>
   <h2>다운로드가 생각보다 오래 걸릴수 있습니다.</h2>
+  <h2 style="display: none;" id='hidden'>로딩중...</h2>
+  <script>
+    let form = document.getElementById('form')
+    form.addEventListener('submit',(e)=>{
+      document.getElementById('hidden').style.display='block';
+    })
+  </script>
   </body>
 </html>
