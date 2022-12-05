@@ -13,7 +13,7 @@ app = Flask(__name__)
 @app.route('/')
 def main():
     if not request.cookies.get('id'):
-        res = make_response()
+        res = make_response(render_template('main.html'))
         res.set_cookie('id', str(random.randint(0, sys.maxsize)))
         return res
     return render_template('main.html')
@@ -74,8 +74,8 @@ def delete():
 
 
 @app.errorhandler(404)
-def error404():
-    return '<h1>ERROR 404</h1>'
+def error404(error):
+    return redirect('/')
 
 
 if __name__ == '__main__':
