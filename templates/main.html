@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="#">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">  
+  <link rel="shortcut icon" href="../favicon.ico">
+  <!-- <link rel="icon" href="/favicon.ico" type="image/x-icon">   -->
   <title>불법 다운로드 사이트</title>
 </head>
 <body>
   <style>
+    body{
+      text-align: center;
+    }
     input{
       height: 100px;
       width: 500px;
@@ -23,6 +26,7 @@
   background-color: #04AA6D;
   color: white;
   padding: 16px;
+  height: 50px;
   font-size: 16px;
   border: none;
 }
@@ -64,14 +68,16 @@
   <h1 style="width:100%;">유튜브 영상 다운받기</h1>
   <form  action="/download" method="post" id="form">
     <input type="text" placeholder="유튜브 영상 URL" name="url" required style="width: 70%;" autocomplete="off">
-    <div class="dropdown" style="width: 30%;">
-      <button class="dropbtn">파일 확장자</button>
+    <br>
+    <div class="dropdown" style="width: 15%;">
+      <button class="dropbtn">확장자</button>
       <div class="dropdown-content">
         <label><input type="radio" name="exts" value="mp3" checked>mp3</label>
         <label><input type="radio" name="exts" value="mp4">mp4</label>
       </div>
     </div>
-    <div class="dropdown" style="width: 30%;">
+    
+    <div class="dropdown" style="width: 15%;">
       <button class="dropbtn">영상 화질</button>
       <div class="dropdown-content">
         <label><input type="radio" name="res" value="360p">360p</label>

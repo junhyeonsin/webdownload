@@ -62,7 +62,7 @@ def music():
     if len(params) == 0:
         return redirect('/')
     else:
-        return send_file(f'music/{musicid}.{ext}', download_name=f'{title}.{ext}', as_attachment=True)
+        return send_file(f'music/{musicid}.{ext}', download_name=f"{title}.{ext}", as_attachment=True)
 
 
 @app.route('/delete')
