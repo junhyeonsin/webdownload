@@ -1,19 +1,20 @@
-import youtube_dl
+import pytube
 from flask import Flask, render_template, request, send_file, redirect, make_response
 import os
 import asyncio
+import sys
 import random
 import datetime
 app = Flask(__name__)
 
-youtube_dl.utils.bug_reports_message = lambda: ''
+#youtube_dl.utils.bug_reports_message = lambda: ''
 
 
 @app.route('/')
 def main():
     if not request.cookies.get('id'):
         res = make_response()
-        res.set_cookie('id', str(random.randint(0, 54632585325251)))
+        res.set_cookie('id', str(random.randint(0, sys.maxsize)))
         return res
     return render_template('main.html')
 
@@ -28,27 +29,33 @@ def fileDownload():
         ext = 'mp3'
     else:
         ext = request.form['exts']
-    ytdl_format_options = {
-        'outtmpl': f'music/{cookie}.{ext}',
-        'restrictfilenames': True,
-        'noplaylist': False,
-        'nocheckcertificate': True,
-        'ignoreerrors': False,
-        'logtostderr': False,
-        'quiet': True,
-        'no_warnings': True,
-        'default_search': 'auto',
-        # bind to ipv4 since ipv6 addresses cause issues sometimes
-        'source_address': '0.0.0.0',
-    }
-    ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
     start = datetime.datetime.now()
-    ytdl.download([request.form['url']])
+    yt = pytube.YouTube(request.form['url'])
+    if ext == 'mp3':
+        stream = yt.streams.filter(
+            only_audio=True).get_highest_resolution()
+    else:
+        stream = yt.streams.get_highest_resolution()
+    stream.download('music', filename=f'{cookie}')
+    # ytdl_format_options = {
+    #     'outtmpl': f'music/{cookie}.{ext}',
+    #     'restrictfilenames': True,
+    #     'noplaylist': False,
+    #     'nocheckcertificate': True,
+    #     'ignoreerrors': False,
+    #     'logtostderr': False,
+    #     'quiet': True,
+    #     'no_warnings': True,
+    #     'default_search': 'auto',
+    #     # bind to ipv4 since ipv6 addresses cause issues sometimes
+    #     'source_address': '0.0.0.0',
+    # }
+    # ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
+    # ytdl.download([request.form['url']])
     end = datetime.datetime.now()
     print(end-start)
     print('downloaded')
-    info = ytdl.extract_info(request.form['url'])
-    return render_template('download.html', thumbnail=info['thumbnails'][-1]['url'], title=info['title'], id=cookie, ext=ext)
+    return render_template('download.html', thumbnail=yt.thumbnail_url, title=yt.title, id=cookie, ext=ext)
 
 
 @app.route('/music')
