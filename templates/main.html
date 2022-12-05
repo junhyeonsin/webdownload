@@ -46,11 +46,13 @@
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
+input[type=radio]{
+  opacity: 0;
+}
 
 /* Links inside the dropdown */
 .dropdown-content input {
   color: black;
-  padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
@@ -63,8 +65,14 @@
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
-  </style>
-  
+label {
+  padding: 8px 40px;
+}
+input:checked + label {
+  color:red
+}
+
+</style>
   <h1 style="width:100%;">유튜브 영상 다운받기</h1>
   <form  action="/download" method="post" id="form">
     <input type="text" id="url" placeholder="유튜브 영상 URL" name="url" required style="width: 70%;" autocomplete="off">
@@ -72,18 +80,18 @@
     <div class="dropdown" style="width: 15%;">
       <button class="dropbtn">확장자</button>
       <div class="dropdown-content">
-        <label><input type="radio" name="exts" value="mp3" checked>mp3</label>
-        <label><input type="radio" name="exts" value="mp4">mp4</label>
+        <input type="radio" name="exts" id="mp3" value="mp3" checked><label for="mp3">mp3</label>
+        <input type="radio" name="exts" id="mp4" value="mp4"><label for="mp4">mp4</label>
       </div>
     </div>
     
     <div class="dropdown" style="width: 15%;">
       <button class="dropbtn">영상 화질</button>
       <div class="dropdown-content">
-        <label><input type="radio" name="res" value="360p">360p</label>
-        <label><input type="radio" name="res" value="480p">480p</label>
-        <label><input type="radio" name="res" value="720p" checked>720p</label>
-        <label><input type="radio" name="res" value="1080p">1080p</label>
+        <input type="radio" name="res" value="360p" id="360p"><label for="360p">360p</label>
+        <input type="radio" name="res" value="480p" id="480p"><label for="480p">480p</label>
+        <input type="radio" name="res" value="720p" checked id="720p"><label for="720p">720p</label>
+        <input type="radio" name="res" value="1080p" id="1080p"><label for="1080p">1080p</label>
       </div>
     </div>
   </form>
