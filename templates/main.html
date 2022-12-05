@@ -69,14 +69,12 @@
       </div>
     </div>
   </form>
-  <h2 style="display: none;" id='hidden'>로딩중...</h2>
-  <h2 id="nothidden">다운로드가 생각보다 오래 걸릴수 있습니다.</h2>
+  <h2 id="text">다운로드가 생각보다 오래 걸릴수 있습니다.</h2>
   <script>
     let form = document.getElementById('form')
     form.addEventListener('submit',(e)=>{
-      document.getElementById('hidden').style.display='block';
-      document.getElementById('nothidden').style.display="none";
-    })
+      document.getElementById('hidden').innerText='로딩중...';
+     })
   </script>
   </body>
 </html>
