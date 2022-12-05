@@ -73,9 +73,9 @@ def delete():
     return redirect('/')
 
 
-@app.route('/favicon.ico')
-def favicon():
-    pass
+@app.errorhandler(404)
+def error404():
+    return '<h1>ERROR 404</h1>'
 
 
 if __name__ == '__main__':
