@@ -35,10 +35,7 @@ def fileDownload():
         stream = yt.streams.filter(only_audio=True).first()
     else:
         stream = yt.streams.first()
-    file = stream.download('music', filename=cookie)
-    if ext == "mp3":
-        base, mp4 = os.path.splitext(file)
-        os.rename(file, base+'.mp3')
+    stream.download('music', filename=f"{cookie}.{ext}")
     # ytdl_format_options = {
     #     'outtmpl': f'music/{cookie}.{ext}',
     #     'restrictfilenames': True,
