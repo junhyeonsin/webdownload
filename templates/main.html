@@ -58,10 +58,11 @@
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
   </style>
-  <h1>유튜브 영상 다운받기</h1>
-  <form action="/download" method="post" id="form">
-    <input type="text" placeholder="유튜브 영상 URL" name="url" required>
-    <div class="dropdown">
+  
+  <h1 style="width:100%;">유튜브 영상 다운받기</h1>
+  <form  action="/download" method="post" id="form">
+    <input type="text" placeholder="유튜브 영상 URL" name="url" required style="width: 70%;">
+    <div class="dropdown" style="width: 30%;">
       <button class="dropbtn">파일 확장자</button>
       <div class="dropdown-content">
         <label><input type="radio" name="exts" value="mp3">mp3</label>
