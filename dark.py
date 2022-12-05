@@ -32,9 +32,9 @@ def fileDownload():
     start = datetime.datetime.now()
     yt = pytube.YouTube(request.form['url'])
     if ext == 'mp3':
-        stream = yt.streams.get_audio_only().get_highest_resolution()
+        stream = yt.streams.filter(only_audio=True)
     else:
-        stream = yt.streams.get_highest_resolution()
+        stream = yt.streams.first()
     file = stream.download('music', filename=cookie)
     if ext == "mp3":
         base, mp4 = os.path.splitext(file)
