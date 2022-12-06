@@ -8,6 +8,21 @@ import datetime
 app = Flask(__name__)
 
 #youtube_dl.utils.bug_reports_message = lambda: ''
+# ytdl_format_options = {
+#     'outtmpl': f'music/{cookie}.{ext}',
+#     'restrictfilenames': True,
+#     'noplaylist': False,
+#     'nocheckcertificate': True,
+#     'ignoreerrors': False,
+#     'logtostderr': False,
+#     'quiet': True,
+#     'no_warnings': True,
+#     'default_search': 'auto',
+#     # bind to ipv4 since ipv6 addresses cause issues sometimes
+#     'source_address': '0.0.0.0',
+# }
+# ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
+# ytdl.download([request.form['url']])
 
 
 @app.route('/')
@@ -32,21 +47,7 @@ def fileDownload():
     else:
         stream = yt.streams.filter(res=resolution).first()
     stream.download('music', filename=f"{cookie}.{ext}")
-    # ytdl_format_options = {
-    #     'outtmpl': f'music/{cookie}.{ext}',
-    #     'restrictfilenames': True,
-    #     'noplaylist': False,
-    #     'nocheckcertificate': True,
-    #     'ignoreerrors': False,
-    #     'logtostderr': False,
-    #     'quiet': True,
-    #     'no_warnings': True,
-    #     'default_search': 'auto',
-    #     # bind to ipv4 since ipv6 addresses cause issues sometimes
-    #     'source_address': '0.0.0.0',
-    # }
-    # ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
-    # ytdl.download([request.form['url']])
+
     end = datetime.datetime.now()
     print(end-start)
     print('downloaded')
