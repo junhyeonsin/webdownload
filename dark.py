@@ -59,9 +59,10 @@ def music():
     musicid = params['music']
     ext = params['ext']
     title = params['title']
-    if len(params) == 0:
+    if len(params) != 3:
         return redirect('/')
     else:
+        print(title)
         return send_file(f'music/{musicid}.{ext}', download_name=f"{title}.{ext}", as_attachment=True)
 
 
