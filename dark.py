@@ -78,6 +78,11 @@ def error404(error):
     return redirect('/')
 
 
+@app.errorhandler(504)
+def error504(error):
+    return '<h1>다운로드하는데 너무 오래걸려서 조금만 기다려 주세요!</h1>'
+
+
 if __name__ == '__main__':
 
     app.run(host='0.0.0.0')
