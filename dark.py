@@ -64,6 +64,8 @@ def music():
         return redirect('/')
     else:
         print(title)
+        title = title.replace('(', '[')
+        title = title.replace(')', ']')
         return send_file(f'music/{musicid}.{ext}', download_name=f"{title}.{ext}", as_attachment=True)
 
 
