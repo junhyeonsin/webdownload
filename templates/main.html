@@ -66,6 +66,15 @@ input[type=radio]{
   display: block;
 }
 
+.dropdown-detail{
+  color:white;
+  width: 160px;
+  height: 50px;
+}
+label{
+padding: 5% 40%;
+}
+
 /* Change color of dropdown links on hover */
 .dropdown-content input:hover {background-color: #ddd;}
 
@@ -74,10 +83,6 @@ input[type=radio]{
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
-label { 
-  padding: 10px 40px;
-  color:white;
-}
 input:checked + label {
   color:red;
   font-weight: bold;
@@ -94,18 +99,30 @@ body{
     <div class="dropdown" style="width: 15%;">
       <button class="dropbtn">확장자</button>
       <div class="dropdown-content">
-        <input type="radio" name="exts" id="mp3" value="mp3" checked><label for="mp3">mp3</label>
-        <input type="radio" name="exts" id="mp4" value="mp4"><label for="mp4">mp4</label>
+        <div class="dropdown-detail">
+          <input type="radio" name="exts" id="mp3" value="mp3" checked><label for="mp3">mp3</label>
+        </div>
+        <div class="dropdown-detail">
+          <input type="radio" name="exts" id="mp4" value="mp4"><label for="mp4">mp4</label>
+        </div>
       </div>
     </div>
     
     <div class="dropdown" style="width: 15%;">
       <button class="dropbtn">영상 화질</button>
       <div class="dropdown-content">
-        <input type="radio" name="res" value="360p" id="360p"><label for="360p">360p</label>
-        <input type="radio" name="res" value="480p" id="480p"><label for="480p">480p</label>
-        <input type="radio" name="res" value="720p" checked id="720p"><label for="720p">720p</label>
-        <input type="radio" name="res" value="1080p" id="1080p"><label for="1080p">1080p</label>
+        <div class="dropdown-detail">
+          <input type="radio" name="res" value="360p" id="360p"><label for="360p">360p</label>
+        </div>
+        <div class="dropdown-detail">
+          <input type="radio" name="res" value="480p" id="480p"><label for="480p">480p</label>
+        </div>
+        <div class="dropdown-detail">
+          <input type="radio" name="res" value="720p" checked id="720p"><label for="720p">720p</label>
+        </div>
+        <div class="dropdown-detail">
+          <input type="radio" name="res" value="1080p" id="1080p"><label for="1080p">1080p</label>
+        </div>        
       </div>
     </div>
   </form>
