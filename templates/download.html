@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="{{url_for('static',filename='favicon.ico')}}">  
-  <title>다운로드 받기</title>
-</head>
-<body>
-  {% include 'main.html' %}
-  <style>
-    a{
-      text-decoration: none;
-      font-size: 50px;
-      font-weight: bold;
-      color:white
-    }
-    
-  </style>
-  <h1 style="width: 100%;">{{title}}</h1>
-  <a href="music?music={{id}}&ext={{ext}}&title={{title}}" style="width: 100%;"><img src={{thumbnail}} alt="영상 다운로드"></a>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="{{url_for('static',filename='favicon.ico')}}"
+    />
+    <title>다운로드 받기</title>
+  </head>
+  <body>
+    {% include 'main.html' %}
+    <style>
+      a {
+        text-decoration: none;
+        font-size: 50px;
+        font-weight: bold;
+        color: white;
+      }
+    </style>
+    <h1 style="width: 100%">{{title}}</h1>
+    <a href="music?music={{id}}&ext={{ext}}&title={{title}}" style="width: 100%"
+      ><img src="{{thumbnail}}" alt="영상 다운로드"
+    /></a>
+  </body>
 </html>
